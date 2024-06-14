@@ -4,6 +4,7 @@ import axios from 'axios';
 import GifSearch from './Gifs/GifSearch';
 import Modal from './Gifs/Modal';
 import Navbar from './Gifs/Navbar';
+import Footer from './Gifs/Footer';
 const App = () => {
   const [gifs, setGifs] = useState([]);
   const [selectedGif, setSelectedGif] = useState(null);
@@ -63,6 +64,8 @@ const App = () => {
         ))}
       </div>
       <Modal show={selectedGif !== null} handleClose={handleCloseModal} gif={selectedGif} />
+      <Footer />
+
     </div>
   );
 };
