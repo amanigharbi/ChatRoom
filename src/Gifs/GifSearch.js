@@ -1,23 +1,24 @@
+// GifSearch.js
 import React, { useState } from 'react';
 
 const GifSearch = ({ fetchGifs }) => {
   const [query, setQuery] = useState('');
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    fetchGifs(query);
+  const handleSearch = (event) => {
+    const value = event.target.value;
+    setQuery(value);
+    fetchGifs(value); 
   };
 
   return (
-    <form onSubmit={handleSearch}>
+    <div>
       <input
         type="text"
+        placeholder="Search GIFs..."
         value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder="Search for GIFs"
+        onChange={handleSearch}
       />
-      <button type="submit">Search</button>
-    </form>
+    </div>
   );
 };
 

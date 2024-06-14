@@ -27,3 +27,9 @@ p {
   font-size: 0.9em;
   color: #555;
 }
+input[type="text"] {
+  padding: 10px;
+  margin: 10px;
+  width: 300px;
+  font-size: 1em;
+}
