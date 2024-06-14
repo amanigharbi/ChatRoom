@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import GifSearch from './Gifs/GifSearch';
 import Modal from './Gifs/Modal';
+import Navbar from './Gifs/Navbar';
 const App = () => {
   const [gifs, setGifs] = useState([]);
   const [selectedGif, setSelectedGif] = useState(null);
@@ -49,9 +50,10 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>GIF Search</h1>
-      <GifSearch fetchGifs={fetchGifs} />
-      <div className="gif-grid">
+      <Navbar onSearch={fetchGifs} /> 
+      <h1>Trending GIF</h1>
+
+            <div className="gif-grid">
         {gifs.map((gif) => (
           <div key={gif.id} className="gif-item" onClick={() => handleGifClick(gif)}>
             <img src={gif.images.original.url} alt={gif.title} />
