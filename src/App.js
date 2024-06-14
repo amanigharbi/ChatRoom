@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const App = () => {
   const [gifs, setGifs] = useState([]);
-// Consommmation de l'api
+
   useEffect(() => {
     const fetchGifs = async () => {
       const apiKey = 'bQyqA7WoIVLUbbwEnjyV2wyXgWp3Ae2s'; 
@@ -12,7 +12,9 @@ const App = () => {
 
       try {
         const response = await axios.get(url);
-        const sortedGifs = response.data.data.sort((a, b) =>
+        const filteredGifs = response.data.data.filter(gif => gif.username); // Filter out gifs without username
+        //sort with import datetime
+        const sortedGifs = filteredGifs.sort((a, b) =>
           new Date(b.import_datetime) - new Date(a.import_datetime)
         );
         setGifs(sortedGifs);
@@ -32,6 +34,7 @@ const App = () => {
           <div key={gif.id} className="gif-item">
             <img src={gif.images.original.url} alt={gif.title} />
             <p>Imported on: {new Date(gif.import_datetime).toLocaleString()}</p>
+            {gif.username && <p>Username: {gif.username}</p>}
           </div>
         ))}
       </div>
@@ -40,4 +43,3 @@ const App = () => {
 };
 
 export default App;
-
