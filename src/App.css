@@ -3,14 +3,14 @@
   font-family: Arial, sans-serif;
 }
 
-.gif-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+.gif-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 columns with equal width */
+  gap: 20px; /* Gap between grid items */
+  margin-top: 20px;
 }
 
 .gif-item {
-  margin: 10px;
   text-align: center;
 }
 
