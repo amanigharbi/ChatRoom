@@ -1,0 +1,65 @@
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 1000; /* Ensure modal is above other content */
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+  
+  .modal-main {
+    position: relative;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+   width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content vertically */
+  }
+  
+  .modal-close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 3px;
+  }
+  
+  .modal-image-container {
+    margin: 20px;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .modal-image {
+    width: 100%;
+    height: auto;
+    max-height: calc(100vh - 160px); /* Adjust as needed to fit within modal */
+    object-fit: contain; /* Ensure the image fits within its container */
+    transition: transform 0.3s ease; /* Smooth zoom transition */
+  }
+  
+  .modal-image.zoomed {
+    transform: scale(2); /* Zoom effect when image is zoomed */
+    cursor: zoom-out; /* Change cursor to zoom-out when image is zoomed */
+  }
+  
+  .modal-image:not(.zoomed):hover {
+    transform: scale(1.2); /* Zoom effect on hover when image is not zoomed */
+    cursor: zoom-in; /* Change cursor to zoom-in when image is not zoomed */
+  }
+  
