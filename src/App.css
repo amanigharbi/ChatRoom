@@ -6,8 +6,9 @@
 .gif-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 4 columns with equal width */
-  gap: 20px; /* Gap between grid items */
+  gap: 20px; 
   margin-top: 20px;
+  padding: 20px;
 }
 
 .gif-item {
@@ -15,8 +16,10 @@
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+  width: 100%; 
+  height: auto; 
+  display: block; 
+  border-radius: 5px; 
 }
 
 p {
