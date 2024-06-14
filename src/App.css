@@ -17,8 +17,9 @@
 
 img {
   width: 100%; 
-  height: auto; 
+  height: 50%;
   display: block; 
+  object-fit: fill;
   border-radius: 5px; 
 }
 
