@@ -33,3 +33,47 @@ input[type="text"] {
   width: 300px;
   font-size: 1em;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+}
+
+.footer {
+  background-color: #9a3759;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  margin-top: auto;
+}
+
+.footer-container {
+  margin: 0 auto; 
+  color: #fff;
+}
+
+.error-message {
+  color: red;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.no-gifs-message {
+  color: #555;
+  text-align: center;
+  margin-top: 20px;
+}
