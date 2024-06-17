@@ -1,3 +1,19 @@
+# TECHNICAL TEST
+
+We want to make chatting more fun and expressive by allowing users to share GIFs in
+our app’s chat room. Using the Giphy API, users will be able to search for GIFs by typing
+in specific words or phrases, narrow down their search by choosing from different
+categories or tags, and browse through a selection of trending or popular GIFs.
+
+## Planning :
+- Date : **June 2024**
+
+## Développé par :
+- Amani Gharbi (amanigharbi9@gmail.com)
+
+## Code source :
+- https://github.com/amanigharbi/ChatRoom
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +84,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+
