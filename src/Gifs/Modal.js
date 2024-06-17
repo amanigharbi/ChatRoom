@@ -1,58 +1,33 @@
-import React, { useState, useEffect, useRef,useCallback } from 'react';
+// Modal.js
+import React from 'react';
 import './Modal.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const Modal = ({ handleClose, show, gif }) => {
-  const [isZoomed, setIsZoomed] = useState(false);
-  const modalRef = useRef(null);
-
-  const toggleZoom = () => {
-    setIsZoomed(prevZoom => !prevZoom);
-  };
-
-  const closeModal = useCallback(() => {
-    setIsZoomed(false);
-    handleClose();
-  }, [handleClose]);
-
-  useEffect(() => {
-    const handleOutsideClick = (event) => {
-      if (modalRef.current && !modalRef.current.contains(event.target)) {
-        closeModal();
-      }
-    };
-
-    if (show) {
-      document.addEventListener('mousedown', handleOutsideClick);
-    } else {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    }
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, [show,closeModal]);
-
-  if (!show || !gif) {
-    return null; 
-  }
+const Modal = ({ show, handleClose, gif, relatedGifs }) => {
+  if (!show) return null;
 
   return (
-    <div className="modal">
-      <div ref={modalRef} className="modal-main">
-        <button className="modal-close-button" onClick={closeModal}>
+    <div className="modal" onClick={handleClose}>
+      <div className="modal-main" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-close-button" onClick={handleClose}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
-        <div className="modal-image-container" onClick={toggleZoom}>
-          <img
-            src={gif.images.original.url}
-            alt={gif.title}
-            className={`modal-image ${isZoomed ? 'zoomed' : ''}`}
-          />
-        </div>
-        <p>Imported on: {new Date(gif.import_datetime).toLocaleString()}</p>
-        {gif.username && <p>Uploader: {gif.username}</p>}
+        {gif && (
+          <>
+            <img src={gif.images.original.url} alt={gif.title} className="modal-image" />
+            <h2>{gif.title}</h2>
+            <p>Uploaded by: {gif.username}</p>
+            <h3>Related GIFs</h3>
+            <div className="related-gif-grid">
+              {relatedGifs.map((relatedGif) => (
+                <div key={relatedGif.id} className="related-gif-item">
+                  <img src={relatedGif.images.original.url} alt={relatedGif.title} />
+                </div>
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

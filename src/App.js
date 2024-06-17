@@ -1,13 +1,13 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import GifSearch from './Gifs/GifSearch';
 import Modal from './Gifs/Modal';
 import Navbar from './Gifs/Navbar';
 import Footer from './Gifs/Footer';
 const App = () => {
   const [gifs, setGifs] = useState([]);
   const [selectedGif, setSelectedGif] = useState(null);
+  const [relatedGifs, setRelatedGifs] = useState([]);
 
     const fetchGifs = async (query) => {
       const apiKey = 'bQyqA7WoIVLUbbwEnjyV2wyXgWp3Ae2s';
@@ -31,16 +31,38 @@ const App = () => {
         }
       } catch (error) {
         console.error('Error fetching the GIFs:', error);
-        // Handle API errors here
       }
        
     };
+    const fetchRelatedGifs = async (title) => {
+      const apiKey = 'bQyqA7WoIVLUbbwEnjyV2wyXgWp3Ae2s';
+      const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&limit=25&offset=0&lang=en&bundle=messaging_non_clips&q=${title}`;
+  
+      try {
+        const response = await axios.get(url);
+        if (response.data && response.data.data) {
+          const filteredGifs = response.data.data.filter(gif => gif.username);
+          const sortedGifs = filteredGifs.sort((a, b) =>
+            new Date(b.import_datetime) - new Date(a.import_datetime)
+          );
+          setRelatedGifs(sortedGifs);
+        } else {
+          console.error('Error: Invalid response from API');
+        }
+      } catch (error) {
+        console.error('Error fetching related GIFs:', error);
+      }
+    };
     const handleGifClick = (gif) => {
       setSelectedGif(gif);
+      fetchRelatedGifs(gif.title);
+
     };
   
     const handleCloseModal = () => {
       setSelectedGif(null);
+      setRelatedGifs([]);
+
     };
     useEffect(() => {
       // Initial load
@@ -63,8 +85,12 @@ const App = () => {
           </div>
         ))}
       </div>
-      <Modal show={selectedGif !== null} handleClose={handleCloseModal} gif={selectedGif} />
-      <Footer />
+      <Modal
+        show={selectedGif !== null}
+        handleClose={handleCloseModal}
+        gif={selectedGif}
+        relatedGifs={relatedGifs}
+      />        <Footer />
 
     </div>
   );
